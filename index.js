@@ -5,7 +5,11 @@ const app = express();
 app.use(express.json());
 const port = 7000;
 
-const uri = "mongodb+srv://learnmongo_1:zjtojQUOitFIkhk9@cluster0.dd4rb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+
+const db_user = env.process.user;
+const db_pass = env.process.pass;
+
+const uri = `mongodb+srv://${db_user}:${db_pass}@cluster0.dd4rb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
@@ -15,7 +19,7 @@ async function run(){
             const database = client.db("SuperShop");
             const collectionUser = database.collection("User");
             // CRUD = create, Read, Update, Delete
-            
+
             // add new user
             app.post('/user', async (req, res) => {
                 const user = req.body;
