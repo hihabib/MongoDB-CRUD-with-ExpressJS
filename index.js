@@ -6,8 +6,8 @@ app.use(express.json());
 const port = 7000;
 
 
-const db_user = env.process.user;
-const db_pass = env.process.pass;
+const db_user = process.env.user;
+const db_pass = process.env.pass;
 
 const uri = `mongodb+srv://${db_user}:${db_pass}@cluster0.dd4rb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
